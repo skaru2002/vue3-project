@@ -1,28 +1,49 @@
 <template>
   <div class="container">
     <h2>To-Do List</h2>
-    <form
-      @submit.prevent="onSubmit" 
-      class="d-flex"
-    >
-      <div class="flex-glow-1 mr-2">
-        <input 
-          class="form-control"
-          type="text" 
-          v-model="todo"
-          placeholder="Type New Todo"
-        >
+    <form @submit.prevent="onSubmit">
+      <div class="d-flex">
+        <div class="flex-glow-1 mr-2">
+          <input 
+            class="form-control"
+            type="text" 
+            v-model="todo"
+            placeholder="Type New Todo"
+          >
+        </div>
+        <div>
+          <button 
+            class="btn btn-primary" 
+            type="submit"
+          >
+            Add
+          </button>
+        </div>
       </div>
-      <div>
-        <button 
-          class="btn btn-primary" 
-          type="submit"
-        >
-          Add
-        </button>
+      <div 
+        v-show="hasError"
+        style="color: red"
+      >
+        This Field Cannot Be Empty
       </div>
     </form>
-    {{ todos }}
+    <div 
+      v-for="todo in todos"
+      :key="todo.id"
+      class="card mt-2"
+    >
+      <div class="card-body p-2">
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            v-model="todo.completed"
+          >
+          <!-- <label class="form-check"></label> -->
+          {{ todo.value}}
+        </div>        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,18 +52,30 @@ import { ref } from 'vue';
 export default {
   setup () {
     const todo = ref('');
-    const todos = ref([]);
+    const todos = ref([
+      { id: 1, value: "g" },
+      { id: 2, value: "h" },
+      ]);
+    const hasError = ref(false);
 
     const onSubmit = () => {
-      todos.value.push({
-        id: Date.now(),
-        value: todo.value,
-      })
+      if(todo.value === ''){
+        hasError.value = true;
+      }else{
+        todos.value.push({
+          id: Date.now(),
+          value: todo.value,
+          completed: false,
+        })
+        hasError.value = false;
+        todo.value ='';
+      }
     }
     return {
       todo,
       todos,
       onSubmit,
+      hasError,
     };
   }
 }
