@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2>To-Do List</h2>
-    <TodoSimpleForm />
+    <TodoSimpleForm @add-todo="addTodo" />
     <div v-if="!todos.length">
       todo list가 비어있습니다.
     </div>
@@ -50,30 +50,18 @@ export default {
       { id: 1, value: "g" },
       { id: 2, value: "h" },
       ]);
-    const hasError = ref(false);
 
     const deleteTodo = (index) => {
       todos.value.splice(index, 1);
     };
 
-    const onSubmit = () => {
-      if(todo.value === ''){
-        hasError.value = true;
-      }else{
-        todos.value.push({
-          id: Date.now(),
-          value: todo.value,
-          completed: false,
-        })
-        hasError.value = false;
-        todo.value ='';
-      }
+    const addTodo = (todo) => {
+      todos.value.push(todo);
     }
-    return {
-      todo,
+      
+    return {  
       todos,
-      onSubmit,
-      hasError,
+      addTodo,
       deleteTodo,
     };
   }

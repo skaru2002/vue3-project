@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="addTodo">
       <div class="d-flex">
         <div class="flex-glow-1 mr-2">
           <input 
@@ -28,11 +28,31 @@
 </template>
 
 <script>
+import {ref} from 'vue';
 export default {
     setup(props, context) {
         const todo = ref('');
-        return {
+        const hasError = ref(false);
+
+        const addTodo = () => {
+            if(todo.value === ''){
+                hasError.value = true;
+            }else{
+                context.emit('add-todo', {
+                    id: Date.now(),
+                    value: todo.value,
+                    completed: false,
+                })
+                hasError.value = false;
+                todo.value ='';
+            }
             
+            
+        }
+        return {
+            todo,
+            hasError,
+            addTodo,
         }
     }
 }
