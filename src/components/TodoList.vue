@@ -33,21 +33,27 @@
 
 <script>
 export default {
-    props: {
-        todos: {
-            type: Array,
-            required: true
-        }
-    },
-    setup(props, context) {
-        const toggleTodo = (index) => {
-            context.emit('toggle-todo', index);
-        }
-
-        return {
-            toggleTodo,
-        }
+  props: {
+    todos: {
+        type: Array,
+        required: true
     }
+  },
+  emits: ['toggle-todo', 'delete-todo'],
+  setup(props, {emit}) {
+    const toggleTodo = (index) => {
+        emit('toggle-todo', index);
+    }
+
+    const deleteTodo = (index) => {
+      emit('delete-todo',index);
+    }
+
+    return {
+        toggleTodo,
+        deleteTodo,
+    }
+  }
 }
 </script>
 

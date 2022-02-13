@@ -5,7 +5,7 @@
     <div v-if="!todos.length">
       todo list가 비어있습니다.
     </div>
-    <TodoList :todos="todos" @toggle-todo="toggleTodo" />
+    <TodoList :todos="todos" @toggle-todo="toggleTodo" @delete-todo="deleteTodo"/>
   </div>
 </template>
 
