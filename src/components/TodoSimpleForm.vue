@@ -1,4 +1,4 @@
-<template>
+ <template>
     <form @submit.prevent="addTodo">
       <div class="d-flex">
         <div class="flex-glow-1 mr-2">
@@ -30,32 +30,32 @@
 <script>
 import {ref} from 'vue';
 export default {
-  emits: ['add-todo'],
-  setup(props, {emit}) {
-    const todo = ref('');
-    const hasError = ref(false);
+    emits: ['add-todo'],
+    setup(props, {emit}) {
+        const todo = ref('');
+        const hasError = ref(false);
 
-    const addTodo = () => {
-        if(todo.value === ''){
-            hasError.value = true;
-        }else{
-            emit('add-todo', {
+        const addTodo = () => {
+            if(todo.value === ''){
+              hasError.value = true;
+            }else{
+              emit('add-todo', {
                 id: Date.now(),
-                value: todo.value,
+                subject: todo.value,
                 completed: false,
-            })
-            hasError.value = false;
-            todo.value ='';
+              })
+              hasError.value = false;
+              todo.value ='';
+            }
+            
+            
         }
-        
-        
+        return {
+            todo,
+            hasError,
+            addTodo,
+        }
     }
-    return {
-        todo,
-        hasError,
-        addTodo,
-    }
-  }
 }
 </script>
 

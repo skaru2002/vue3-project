@@ -22,3 +22,10 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### start json-server (local db)
+<!-- open new terminal (ctrl+shift+`) -->
+```
+json-server --watch db.json
+```
