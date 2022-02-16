@@ -107,18 +107,13 @@
     },
     {
       "subject": "d",
-      "completed": false,
+      "completed": true,
       "id": 22
     },
     {
       "subject": "asd",
       "completed": false,
       "id": 23
-    },
-    {
-      "subject": "aa",
-      "completed": false,
-      "id": 24
     }
   ]
 }
