@@ -1,7 +1,7 @@
  <template>
     <form @submit.prevent="addTodo">
       <div class="d-flex">
-        <div class="flex-glow-1 mr-2">
+        <div class="flex-glow-1 me-2">
           <input 
             class="form-control"
             type="text" 
