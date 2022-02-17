@@ -107,12 +107,12 @@
     },
     {
       "subject": "d",
-      "completed": true,
+      "completed": false,
       "id": 22
     },
     {
-      "subject": "ㅁㄴㅇㄹ111",
-      "completed": false,
+      "subject": "ㅁㄴㅇㄹ11111",
+      "completed": true,
       "id": 23
     }
   ]
