@@ -87,27 +87,6 @@ export default {
         triggerToast,
     } = useToast();
 
-    // onUnmounted (() => {
-    //     clearTimeout(toastTimeout.value)
-    //   })
-
-    // const showToast = ref (false);
-    // const toastMessage = ref ('');
-    // const toastType = ref('success');
-    // const toastTimeout = ref (null);
-    // const triggerToast = (message, type = 'success') => {
-    //     toastMessage.value = message;
-    //     toastType.value = type;
-    //     showToast.value =true;
-        
-    //     toastTimeout.value = setTimeout ( () => {
-    //       toastMessage.value = '';
-    //       toastType.value = 'success';
-    //       showToast.value = false;
-    //     }, 3000)
-    //   }
-    
-
     const getTodo = async ( page = currentPage.value) => {
       currentPage.value = page
       error.value = '';
@@ -141,9 +120,9 @@ export default {
       }      
     }
 
-    const deleteTodo = async (index) => {
+    const deleteTodo = async (id) => {
       error.value = '';
-      const id = todos.value[index].id
+      console.log(id);
       try {
         await axios.delete('http://localhost:3000/todos/' + id)
         getTodo(currentPage.value);
@@ -187,14 +166,6 @@ export default {
       clearTimeout(timeout)
       getTodo(1)
     }
-    // const filteredTodos = computed(() => {
-    //   if (searchText.value) {
-    //     return todos.value.filter(todo => {
-    //       return todo.subject.includes(searchText.value);
-    //     })
-    //   }
-    //   return todos.value;
-    // })
     
     return {  
       todos,
