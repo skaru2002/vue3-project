@@ -1,10 +1,15 @@
 <template>
-  <h1>TodoCreate</h1>
+    <h1>TodoCreate</h1>
+    <TodoForm />
 </template>
 
 <script>
-export default {
+import TodoForm from '@/components/TodoForm.vue'
 
+export default {
+    components: {
+      TodoForm
+    }
 }
 </script>
 
