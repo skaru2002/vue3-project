@@ -5,13 +5,18 @@
         @submit.prevent="onSave"
     >
         <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-            <label class="m-2">Todo Subject</label>
-            <input v-model="todo.subject" type="text" class="form-control">
-            </div>
-            <div v-if="subjectError" class="text-red"> {{subjectError}}</div>
-        </div>
+            <!-- <div class="col-6">
+                <div class="form-group">
+                    <label class="m-2">Todo Subject</label>
+                    <input v-model="todo.subject" type="text" class="form-control">
+                </div>
+                <div v-if="subjectError" class="text-red"> {{subjectError}}</div>
+            </div> -->
+            <Input
+                label="Todo Subject" 
+                v-model:subject="todo.subject"
+                :error="subjectError"
+            />
             <div v-if="editing" class="col-6">
                 <div class="form-group">
                     <label class="m-2">Status</label>
@@ -35,15 +40,16 @@
             </div>
         </div>
         <button 
-        type="submit" 
-        class="btn btn-primary me-2 mt-2"
-        :disabled="!todoUpdated"
+            type="submit" 
+            class="btn btn-primary me-2 mt-2"
+            :disabled="!todoUpdated"
         >
         {{editing ? "Update" : "Create"}}
         </button>
         <button 
-        class="btn btn-outline-dark mt-2"
-        @click="moveToTodoListPage"
+            type="button"
+            class="btn btn-outline-dark mt-2"
+            @click="moveToTodoListPage"
         >
         Cancel
         </button>
@@ -64,10 +70,12 @@ import {ref, computed} from 'vue';
 import _ from 'lodash';
 import Toast from '@/components/Toast.vue';
 import {useToast} from '@/composables/Toast';
+import Input from '@/components/Input.vue';
 
 export default {
     components: {
-        Toast
+        Toast,
+        Input
     },
     props: {
         editing: {
@@ -175,10 +183,6 @@ export default {
 </script>
 
 <style scoped>
-    .text-red {
-        color: red
-    }
-
     .fade-enter-active,
     .fade-leave-active {
         transition: all 0.5s ease;

@@ -36,14 +36,9 @@
       "id": 7
     },
     {
-      "subject": "123456",
-      "completed": false,
+      "subject": "12345678",
+      "completed": true,
       "id": 8
-    },
-    {
-      "subject": "1234556",
-      "completed": false,
-      "id": 9
     }
   ]
 }
