@@ -72,7 +72,7 @@ export default {
     const todos = ref([]);
     const error = ref('');
     const numberOfTodos = ref(0);
-    const limit = 5;
+    const limit = 10;
     const currentPage = ref(1);
     const searchText = ref('');
 
@@ -94,8 +94,11 @@ export default {
         const res = await axios.get(
           `http://localhost:3000/todos?_sort=id&_order=desc&subject_like=${searchText.value}&_page=${page}&_limit=${limit}`
         )
+        console.log(res);
         numberOfTodos.value = res.headers['x-total-count']
         todos.value = res.data
+        console.log(numberOfTodos.value);
+        console.log(todos.value);
       }catch (err) {
         console.log(err);
         error.value = 'Something went wrong';
